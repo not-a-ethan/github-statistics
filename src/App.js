@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import './App.css';
 
 function App() {
   const usernameInput = useRef(null);
   const container = useRef(null);
+
+  const [userHTML, setUserHTML] = useState(<></>);
 
   const firstUser = {
     username: '',
@@ -97,12 +99,12 @@ function App() {
       firstUser.bio = json["bio"];
       firstUser.public_repos = json["public_repos"];
 
-      container['current'].innerHTML = (`
+      setUserHTML(
         <div className="userContainer">
           <picture>
-            <img src=${firstUser.avatar} alt="User's profile picture" />
+            <img src={firstUser.avatar} alt="User's profile picture" />
           </picture>
-          <h2><a href=${firstUser.html_url}>${firstUser.username}</a></h2>
+          <h2><a href={firstUser.html_url}>${firstUser.username}</a></h2>
           <span><a href="${firstUser.following_url}">Following: ${firstUser.following_count}</a> | <a href="${firstUser.followers_url}">Followers: ${firstUser.followers_count}</a></span>
           <p>${json['bio'] ? firstUser.bio : ''}</p>
 
@@ -110,9 +112,9 @@ function App() {
             <li>Number of (public) repos: ${firstUser.public_repos}</li>
           </ul>
 
-          <button onClick=${compare}>Compare!</button>
+          <button onClick={compare}>Compare!</button>
         </div>
-      `);
+      )
     })
   }
 
@@ -125,7 +127,7 @@ function App() {
 
       <button id="Get stats" onClick={getStats}>Get stats!</button>
 
-      <div ref={container}></div>
+      <div ref={container}>{userHTML}</div>
     </div>
   );
 }

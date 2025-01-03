@@ -44,3 +44,13 @@
 li {
   list-style-position: inside;
 }
+
+.firstUser {
+  position: absolute;
+  left: 2vw;
+}
+
+.compareDialog {
+  position: absolute;
+  right: 2vw
+}

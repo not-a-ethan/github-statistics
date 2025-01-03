@@ -138,19 +138,20 @@ function App() {
       <input type='text' name="username" id="username" ref={usernameInput} />
 
       <button id="Get stats" onClick={getStats}>Get stats!</button>
-      <div ref={container}>{userHTML}</div>
 
-      <br />
+      <div>
+        <div ref={container} className="firstUser">{userHTML}</div>
 
-      <dialog ref={dialogElm}>
-        <img src={comparePfp} alt="User's profile picture" />
+        <div ref={dialogElm} className="compareDialog">
+          <img src={comparePfp} alt="User's profile picture" />
 
-        <ul>
-          {compareStats.map((stat) => <li key={stat}>{stat}</li>)}
-        </ul>
+          <ul>
+            {compareStats.map((stat) => <li key={stat}>{stat}</li>)}
+          </ul>
 
-        <button onClick={closeDialog}>Close</button>
-      </dialog>
+          <button onClick={closeDialog}>Close</button>
+        </div>
+      </div>
     </div>
   );
 }

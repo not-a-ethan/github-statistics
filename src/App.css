@@ -40,3 +40,7 @@
 .compareBtn {
   display: none;
 }
+
+li {
+  list-style-position: inside;
+}

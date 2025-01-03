@@ -9,6 +9,7 @@ function App() {
 
   const [userHTML, setUserHTML] = useState(<></>);
   const [compareStats, setCompareStats] = useState([]);
+  const [comparePfp, setComparePfp] = useState(null);
 
   const firstUser = {
     username: '',
@@ -77,6 +78,8 @@ function App() {
         diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUser.username}`);
       }
 
+      setComparePfp(thisUser.avatar);
+
       setCompareStats(diffrences);
       dialogElm.current.open = true;
     })
@@ -140,7 +143,11 @@ function App() {
       <br />
 
       <dialog ref={dialogElm}>
-        {compareStats.map((stat) => <p key={stat}>{stat}</p>)}
+        <img src={comparePfp} alt="User's profile picture" />
+
+        <ul>
+          {compareStats.map((stat) => <li key={stat}>{stat}</li>)}
+        </ul>
 
         <button onClick={closeDialog}>Close</button>
       </dialog>

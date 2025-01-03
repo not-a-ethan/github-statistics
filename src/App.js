@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const usernameInput = useRef(null);
   const container = useRef(null);
+  const compareBtn = useRef(null);
 
   const [userHTML, setUserHTML] = useState(<></>);
   const [compareStats, setCompareStats] = useState([]);
@@ -44,7 +45,7 @@ function App() {
         followers_url: `https://github.com/${username}?tab=followers`,
         following_count: json["following"],
         followers_count: json["followers"],
-        public_repos: json["bio"],
+        public_repos: json["public_repos"],
         bio: json["public_repos"]
       };
 
@@ -59,17 +60,19 @@ function App() {
       }
 
       if (thisUser.following_count > firstUser.following_count) {
-        diffrences.push(`${thisUser.username} is following ${thisUser.following_count - firstUser.following_count} more people than ${firstUser.following_count}.`);
+        diffrences.push(`${thisUser.username} is following ${thisUser.following_count - firstUser.following_count} more people than ${firstUser.username}.`);
       } else if (thisUser.following_count < firstUser.following_count) {
-        diffrences.push(`${thisUser.username} is following ${firstUser.following_count - thisUser.following_count} less people than ${firstUser.following_count}.`);
+        diffrences.push(`${thisUser.username} is following ${firstUser.following_count - thisUser.following_count} fewer people than ${firstUser.username}.`);
       } else {
         diffrences.push(`${thisUser.username} is following the same number of people as ${firstUser.username}`);
       }
 
+      console.log(thisUser.public_repos)
+      console.log(firstUser.public_repos)
       if (thisUser.public_repos > firstUser.public_repos) {
         diffrences.push(`${thisUser.username} has ${thisUser.public_repos - firstUser.public_repos} more public repositories than ${firstUser.username}`);
       } else if (thisUser.public_repos < firstUser.public_repos) {
-        diffrences.push(`${thisUser.username} has ${firstUser.public_repos - thisUser.public_repos} less public repositories than ${firstUser.username}`);
+        diffrences.push(`${thisUser.username} has ${firstUser.public_repos - thisUser.public_repos} fewer public repositories than ${firstUser.username}`);
       } else {
         diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUser.username}`);
       }
@@ -127,7 +130,6 @@ function App() {
       <input type='text' name="username" id="username" ref={usernameInput} />
 
       <button id="Get stats" onClick={getStats}>Get stats!</button>
-
       <div ref={container}>{userHTML}</div>
 
       <dialog open>

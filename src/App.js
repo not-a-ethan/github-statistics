@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, use } from "react";
 
 import './App.css';
 
@@ -7,6 +7,7 @@ function App() {
   const container = useRef(null);
 
   const [userHTML, setUserHTML] = useState(<></>);
+  const [compareStats, setCompareStats] = useState([]);
 
   const firstUser = {
     username: '',
@@ -73,7 +74,7 @@ function App() {
         diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUser.username}`);
       }
 
-      alert(diffrences);
+      setCompareStats(diffrences);
     })
   }
 
@@ -104,12 +105,12 @@ function App() {
           <picture>
             <img src={firstUser.avatar} alt="User's profile picture" />
           </picture>
-          <h2><a href={firstUser.html_url}>${firstUser.username}</a></h2>
-          <span><a href="${firstUser.following_url}">Following: ${firstUser.following_count}</a> | <a href="${firstUser.followers_url}">Followers: ${firstUser.followers_count}</a></span>
-          <p>${json['bio'] ? firstUser.bio : ''}</p>
+          <h2><a href={firstUser.html_url}>{firstUser.username}</a></h2>
+          <span><a href="{firstUser.following_url}">Following: {firstUser.following_count}</a> | <a href="{firstUser.followers_url}">Followers: {firstUser.followers_count}</a></span>
+          <p>{json['bio'] ? firstUser.bio : ''}</p>
 
           <ul>
-            <li>Number of (public) repos: ${firstUser.public_repos}</li>
+            <li>Number of (public) repos: {firstUser.public_repos}</li>
           </ul>
 
           <button onClick={compare}>Compare!</button>
@@ -122,12 +123,17 @@ function App() {
     <div className="App">
       <h1>Github statistics</h1>
 
-      <label for="username">Username</label>
+      <label htmlFor="username">Username</label>
       <input type='text' name="username" id="username" ref={usernameInput} />
 
       <button id="Get stats" onClick={getStats}>Get stats!</button>
 
       <div ref={container}>{userHTML}</div>
+
+      <dialog open>
+        {compareStats.map((stat) => <p key={stat}>{stat}</p>)}
+        <button>Close</button>
+      </dialog>
     </div>
   );
 }

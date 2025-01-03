@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   const usernameInput = useRef(null);
   const container = useRef(null);
-  const compareBtn = useRef(null);
+  const dialogElm = useRef(null);
 
   const [userHTML, setUserHTML] = useState(<></>);
   const [compareStats, setCompareStats] = useState([]);
@@ -78,6 +78,7 @@ function App() {
       }
 
       setCompareStats(diffrences);
+      dialogElm.current.open = true;
     })
   }
 
@@ -122,6 +123,10 @@ function App() {
     })
   }
 
+  function closeDialog() {
+    dialogElm.current.open = false;
+  }
+
   return (
     <div className="App">
       <h1>Github statistics</h1>
@@ -132,9 +137,12 @@ function App() {
       <button id="Get stats" onClick={getStats}>Get stats!</button>
       <div ref={container}>{userHTML}</div>
 
-      <dialog open>
+      <br />
+
+      <dialog ref={dialogElm}>
         {compareStats.map((stat) => <p key={stat}>{stat}</p>)}
-        <button>Close</button>
+
+        <button onClick={closeDialog}>Close</button>
       </dialog>
     </div>
   );

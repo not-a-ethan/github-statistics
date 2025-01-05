@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+.compareDiv {
+  display: none;
+
+  position: absolute;
+  right: 2vw
+}
+
+.firstUser {
+  position: absolute;
+  left: 2vw;
+}
+
+.container {
+  display: none;
+}

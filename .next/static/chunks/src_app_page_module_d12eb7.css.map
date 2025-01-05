@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///home/ethan/Documents/programming/Git/github-statistics/src/app/page.module.css"],"sourcesContent":[".App {\n  text-align: center;\n}\n\n.compareDiv {\n  display: none;\n\n  position: absolute;\n  right: 2vw\n}\n\n.firstUser {\n  position: absolute;\n  left: 2vw;\n}\n\n.container {\n  display: none;\n}"],"names":[],"mappings":"AAAA;;;;AAIA;;;;;;AAOA;;;;;AAKA"}},
+    {"offset": {"line": 19, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

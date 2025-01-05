@@ -15,8 +15,7 @@ export default function Home() {
   const [userHTML, setUserHTML] = useState(<></>);
   const [compareStats, setCompareStats] = useState([]);
   const [comparePfp, setComparePfp] = useState(null);
-
-  let firstUsername = '';
+  const [firstUsername, setFirstUsername] = useState('')
 
   function compare() {
     const username = prompt("What account should it be compared to?").trim();
@@ -26,6 +25,7 @@ export default function Home() {
       return;
     }
 
+    console.log(firstUsername)
     CompareStats(username, firstUsername).then(data => {
       setCompareStats(data["diff"]);
       setComparePfp(data["pfp"]);
@@ -36,9 +36,9 @@ export default function Home() {
 
   function getStats() {
     const username = usernameInput['current'].value;
-    firstUsername = username;
 
     UserStats(username).then(data => {
+      setFirstUsername(username);
       setUserHTML(data);
       userContainer.current.style.display = 'block';
     })

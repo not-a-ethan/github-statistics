@@ -1,6 +1,6 @@
 {
   "node": {
-    "408b57854c5e5bf011757593fc43bf12445c8bc0c4": {
+    "608316602575442af60fdd4ccc8b0d89a02333eea7": {
       "workers": {
         "app/page": {
           "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/components/compare.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/components/stats.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",
@@ -11,7 +11,7 @@
         "app/page": "action-browser"
       }
     },
-    "608316602575442af60fdd4ccc8b0d89a02333eea7": {
+    "408b57854c5e5bf011757593fc43bf12445c8bc0c4": {
       "workers": {
         "app/page": {
           "moduleId": "[project]/.next-internal/server/app/page/actions.js { ACTIONS_MODULE0 => \"[project]/src/app/components/compare.tsx [app-rsc] (ecmascript)\", ACTIONS_MODULE1 => \"[project]/src/app/components/stats.tsx [app-rsc] (ecmascript)\" } [app-rsc] (ecmascript)",

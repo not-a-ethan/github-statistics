@@ -26,10 +26,10 @@ export async function getStats(username: string) {
     userObj.profile_url = userJSON["html_url"];
     userObj.following_url = `https://github.com/${username}?tab=following`;
     userObj.followers_url = `https://github.com/${username}?tab=followers`;
-    userObj.following_count = userJSON["following"];
-    userObj.followers_count = userJSON["followers"];
+    userObj.following_count = Number(userJSON["following"]);
+    userObj.followers_count = Number(userJSON["followers"]);
     userObj.bio = userJSON["bio"];
-    userObj.public_repos = userJSON["public_repos"];
+    userObj.public_repos = Number(userJSON["public_repos"]);
     userObj.html_url = userJSON["html_url"];
 
     const commitRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`, {
@@ -40,7 +40,7 @@ export async function getStats(username: string) {
     });
 
     const commitJSON = await commitRes.json();
-    userObj.total_commits = commitJSON['total_count'];
+    userObj.total_commits = Number(commitJSON['total_count']);
 
     return userObj;
 }

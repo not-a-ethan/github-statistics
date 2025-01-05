@@ -63,13 +63,14 @@ function Home() {
     const [userHTML, setUserHTML] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {}, void 0, false));
     const [compareStats, setCompareStats] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [comparePfp, setComparePfp] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    let firstUsername = '';
+    const [firstUsername, setFirstUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     function compare() {
         const username = prompt("What account should it be compared to?").trim();
         if (username === firstUsername) {
             alert("Thats the same account");
             return;
         }
+        console.log(firstUsername);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$compare$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CompareStats"])(username, firstUsername).then((data)=>{
             setCompareStats(data["diff"]);
             setComparePfp(data["pfp"]);
@@ -78,8 +79,8 @@ function Home() {
     }
     function getStats() {
         const username = usernameInput['current'].value;
-        firstUsername = username;
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$stats$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["UserStats"])(username).then((data)=>{
+            setFirstUsername(username);
             setUserHTML(data);
             userContainer.current.style.display = 'block';
         });
@@ -187,7 +188,7 @@ function Home() {
         columnNumber: 5
     }, this);
 }
-_s(Home, "sODVhgJJt/PdatEwKcEoBKHwMvE=");
+_s(Home, "6nHOKA5tnJ24xXTGkLOdmsi524E=");
 _c = Home;
 var _c;
 __turbopack_refresh__.register(_c, "Home");

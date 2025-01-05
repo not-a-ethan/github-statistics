@@ -78,10 +78,10 @@ async function getStats(username) {
     userObj.profile_url = userJSON["html_url"];
     userObj.following_url = `https://github.com/${username}?tab=following`;
     userObj.followers_url = `https://github.com/${username}?tab=followers`;
-    userObj.following_count = userJSON["following"];
-    userObj.followers_count = userJSON["followers"];
+    userObj.following_count = Number(userJSON["following"]);
+    userObj.followers_count = Number(userJSON["followers"]);
     userObj.bio = userJSON["bio"];
-    userObj.public_repos = userJSON["public_repos"];
+    userObj.public_repos = Number(userJSON["public_repos"]);
     userObj.html_url = userJSON["html_url"];
     const commitRes = await fetch(`https://api.github.com/search/commits?q=author:${username}`, {
         "method": "GET",
@@ -90,7 +90,7 @@ async function getStats(username) {
         }
     });
     const commitJSON = await commitRes.json();
-    userObj.total_commits = commitJSON['total_count'];
+    userObj.total_commits = Number(commitJSON['total_count']);
     return userObj;
 }
 }}),
@@ -114,32 +114,32 @@ async function /*#__TURBOPACK_DISABLE_EXPORT_MERGING__*/ CompareStats(username, 
     const thisUser = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$components$2f$getStats$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getStats"])(username);
     const diffrences = [];
     if (thisUser.followers_count > firstUser.followers_count) {
-        diffrences.push(`${thisUser.username} has ${thisUser.followers_count - firstUser.followers_count} more followers than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} has ${thisUser.followers_count - firstUser.followers_count} more followers than ${firstUsername}.`);
     } else if (thisUser.followers_count < firstUser.followers_count) {
-        diffrences.push(`${thisUser.username} has ${firstUser.followers_count - thisUser.followers_count} less followers than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} has ${firstUser.followers_count - thisUser.followers_count} fewer followers than ${firstUsername}.`);
     } else {
-        diffrences.push(`${thisUser.username} has the same number of followers as ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} has the same number of followers as ${firstUsername}.`);
     }
     if (thisUser.following_count > firstUser.following_count) {
-        diffrences.push(`${thisUser.username} is following ${thisUser.following_count - firstUser.following_count} more people than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} is following ${thisUser.following_count - firstUser.following_count} more people than ${firstUsername}.`);
     } else if (thisUser.following_count < firstUser.following_count) {
-        diffrences.push(`${thisUser.username} is following ${firstUser.following_count - thisUser.following_count} fewer people than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} is following ${firstUser.following_count - thisUser.following_count} fewer people than ${firstUsername}.`);
     } else {
-        diffrences.push(`${thisUser.username} is following the same number of people as ${firstUser.username}`);
+        diffrences.push(`${thisUser.username} is following the same number of people as ${firstUsername}`);
     }
     if (thisUser.public_repos > firstUser.public_repos) {
-        diffrences.push(`${thisUser.username} has ${thisUser.public_repos - firstUser.public_repos} more public repositories than ${firstUser.username}`);
+        diffrences.push(`${thisUser.username} has ${thisUser.public_repos - firstUser.public_repos} more public repositories than ${firstUsername}`);
     } else if (thisUser.public_repos < firstUser.public_repos) {
-        diffrences.push(`${thisUser.username} has ${firstUser.public_repos - thisUser.public_repos} fewer public repositories than ${firstUser.username}`);
+        diffrences.push(`${thisUser.username} has ${firstUser.public_repos - thisUser.public_repos} fewer public repositories than ${firstUsername}`);
     } else {
-        diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUser.username}`);
+        diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUsername}`);
     }
     if (thisUser.total_commits > firstUser.total_commits) {
-        diffrences.push(`${thisUser.username} has ${thisUser.total_commits - firstUser.total_commits} more commits than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} has ${thisUser.total_commits - firstUser.total_commits} more commits than ${firstUsername}.`);
     } else if (thisUser.total_commits < firstUser.total_commits) {
-        diffrences.push(`${thisUser.username} has ${firstUser.total_commits - thisUser.total_commits} less commits than ${firstUser.username}.`);
+        diffrences.push(`${thisUser.username} has ${firstUser.total_commits - thisUser.total_commits} fewer commits than ${firstUsername}.`);
     } else {
-        diffrences.push(`${thisUser.username} and ${firstUser.username} and the same number of commits.`);
+        diffrences.push(`${thisUser.username} and ${firstUsername} and the same number of commits.`);
     }
     return {
         diff: diffrences,

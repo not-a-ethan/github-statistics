@@ -32,6 +32,14 @@ export async function CompareStats(username: string, firstUsername: string) {
         diffrences.push(`${thisUser.username} has the same number of public repositories as ${firstUser.username}`);
     }
 
+    if (thisUser.total_commits > firstUser.total_commits) {
+        diffrences.push(`${thisUser.username} has ${thisUser.total_commits - firstUser.total_commits} more commits than ${firstUser.username}.`);
+    } else if (thisUser.total_commits < firstUser.total_commits) {
+        diffrences.push(`${thisUser.username} has ${firstUser.total_commits - thisUser.total_commits} less commits than ${firstUser.username}.`);
+    } else {
+        diffrences.push(`${thisUser.username} and ${firstUser.username} and the same number of commits.`);
+    }
+
     return {
         diff: diffrences, 
         pfp: thisUser.avatar

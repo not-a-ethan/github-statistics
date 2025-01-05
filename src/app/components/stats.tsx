@@ -16,9 +16,8 @@ export async function UserStats(username: string) {
 
           <ul>
             <li>Number of (public) repos: {userObj.public_repos}</li>
+            <li>Total commits: {userObj.total_commits}</li>
           </ul>
-
-          
         </div>
     )
 }

@@ -1,3 +1,20 @@
 li {
   list-style-position: inside;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: black;
+    color: gray;
+  }
+
+  input {
+    background-color: darkgray;
+
+    margin-right: 1vw;
+  }
+  
+  button {
+    background-color: darkgray;
+  }
+}

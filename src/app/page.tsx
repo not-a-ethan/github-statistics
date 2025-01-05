@@ -48,7 +48,7 @@ export default function Home() {
     <div className={`${styles.App}`}>
       <h1>Github statistics</h1>
 
-      <label htmlFor="username">Username</label>
+      <label htmlFor="username">Username: </label>
       <input type='text' name="username" id="username" ref={usernameInput} />
 
       <button id="Get stats" onClick={getStats}>Get stats!</button>
